@@ -1,0 +1,63 @@
+﻿@model WebLapTop.Models.Chitiethoadon
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div style="margin:5px;" class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="Chitiethoadon" asp-action="Index">Quay về danh sách</a>
+            <span class="breadcrumb-item active"> Thêm chi tiết hóa đơn</span>
+        </nav>
+    </div>
+</div>
+<div style="margin:5px;" class="row">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Thêm chi tiết hóa đơn</h4>
+        </div>
+        <div class="card-content">
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-md-3">
+                        <label>Số điện thoại</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        @Html.DropDownList("IdhoaDon", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdhoaDon, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Tên sản phẩm</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        @Html.DropDownList("IdsanPham", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdsanPham, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Số lượng mua</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="SoLuongMua" class="form-control" placeholder="Số lượng mua" />
+                    </div>
+                    <div class="col-md-3">
+                        <label>Đơn giá</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="DonGia" class="form-control" placeholder="Đơn giá" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

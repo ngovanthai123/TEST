@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebLapTop.Models.Sanpham>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a style="margin-left:20px;" class="btn btn-primary btn-tone m-r-5" asp-action="Create">Create New</a>
+</p>
+<div style="margin:5px;" class="card mt-1">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <table id="table1">
+
+            <tr class="text-center">
+                <th width="2%">#</th>
+                <th scope="col" style="text-align:center">Tên sản phẩm </th>
+                <th scope="col" style="text-align:center">Ảnh Sản Phẩm </th>
+                <th scope="col" style="text-align:center">Giá bán </th>
+                <th scope="col" style="text-align:center">Giá Khuyến mãi </th>
+                <th scope="col" style="text-align:center">Số Lượng </th>
+                <th scope="col" style="text-align:center">Tình trạng </th>
+                <th scope="col" style="text-align:center">Bảo Hành </th>
+                <th scope="col" style="text-align:center">Dòng sản phẩm </th>
+                <th scope="col" style="text-align:center">Nơi sản xuất </th>
+                <th></th>
+                <th></th>
+                <th width="2%"></th>
+            </tr>
+
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSanPham)
+                    </td>
+                    <td>
+                        <img src="~/Images/@Html.DisplayFor(modelItem=> item.AnhSanPham)" width="70" height="70" class="img-thumbnail" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaBan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaKhuyenMai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuong)
+                    </td>
+                    <td>
+                        @if (item.SoLuong.Value > 0)
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                <div style="color:green; font-family:'Agency FB'; font-size:20px;font-weight:bold">Còn hàng</div>
+                            </div> }
+                        else
+                        {
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-danger badge-dot m-r-10"></div>
+                                <div style="color:red; font-family:'Agency FB'; font-size:20px;font-weight:bold">Hết hàng</div>
+                            </div>}
+
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.MoTa)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BaoHanh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IddongSanPhamNavigation.TenSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdnoiSanXuatNavigation.TenNoiSanXuat)
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/wrench.jpg" /></a>
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Details" asp-route-id="@item.Id"><img src="~/images/list.jpg" /></a>
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.jpg" /></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+
+        </table>
+    </div>
+</div>

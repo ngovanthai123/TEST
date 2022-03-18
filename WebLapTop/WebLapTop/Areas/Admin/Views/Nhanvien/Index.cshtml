@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebLapTop.Models.Nhanvien>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a style="margin-left:20px;" class="btn btn-primary btn-tone m-r-5" asp-action="Create">Create New</a>
+</p>
+<div style="margin:5px;" class="card mt-1">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <table id="table1">
+
+            <tr class="text-center">
+                <th width="5%">#</th>
+                <th scope="col">Họ và tên </th>
+                <th scope="col">Số điện thoại </th>
+                <th scope="col">Email </th>
+                <th scope="col">Ảnh đại diện </th>
+                <th scope="col">Tên đăng nhập </th>
+                <th scope="col">Quyền </th>
+                <th></th>
+                <th></th>
+                <th width="2%"></th>
+            </tr>
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoVaTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoDienThoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnhDaiDien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenDangNhap)
+                    </td>
+                    <td>
+                        @if (item.Quyen == 1)
+                        {
+                            <span class="badge badge-danger" style="color:red; font-weight:bold">Quản lý</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-warning" style="color:black;font-weight:bold">Nhân viên</span>
+                        }
+                    </td>
+
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/wrench.jpg" /></a>
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Details" asp-route-id="@item.Id"><img src="~/images/list.jpg" /></a>
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.jpg" /></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+
+        </table>
+    </div>
+</div>

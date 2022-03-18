@@ -1,0 +1,99 @@
+﻿@model WebLapTop.Models.Hoadon
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div style="margin:5px;" class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="HoaDon" asp-action="Index">Quay về danh sách</a>
+            <span class="breadcrumb-item active"> Thêm hóa đơn</span>
+        </nav>
+    </div>
+</div>
+<div style="margin:5px;" class="row">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Thêm hóa đơn</h4>
+        </div>
+        <div class="card-content">
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-md-3">
+                        <label>Tên khách hàng</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        @Html.DropDownList("IdkhachHang", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdkhachHang, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Nhân viên</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        @Html.DropDownList("IdnhanVien", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdnhanVien, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <label>Ngày lập</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="NgayLap" class="form-control" placeholder="Ngày lập" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>Địa chỉ nhận hàng</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="NoiNhan" class="form-control" placeholder="Địa chỉ nhận hàng" />
+                    </div>
+                    <div class="col-md-3">
+                        <label>Số điện thoại</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="SoDienThoai" class="form-control" placeholder="Số điện thoại" />
+                    </div>
+                    <div class="col-md-3">
+                        <label>Ngày xác nhận</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="NgayXacNhan" class="form-control" placeholder="Ngày xác nhận" />
+                    </div>
+                    <div class="col-md-3">
+                        <label>Tình trạng</label>
+                    </div>
+                    @Html.DropDownListFor(model => model.TinhTrang, new SelectList(new[] {
+                    new SelectListItem {Value = null, Text = "-- Chọn --" },
+                    new SelectListItem {Value = "0", Text = "Đơn hàng mới" },
+                    new SelectListItem {Value = "1", Text = "Đang xác nhận" },
+                    new SelectListItem {Value = "2", Text = "Đã hủy" },
+                    new SelectListItem {Value = "3", Text = "Đang đóng gói" },
+                    new SelectListItem {Value = "4", Text = "Đang gởi vận chuyển" },
+                    new SelectListItem {Value = "5", Text = "Đang chuyển" },
+                    new SelectListItem {Value = "6", Text = "Thất bại" },
+                    new SelectListItem {Value = "7", Text = "Đang chuyển hoàn" },
+                    new SelectListItem {Value = "8", Text = "Đã chuyển hoàn" },
+                    new SelectListItem {Value = "9", Text = "Thành công" }
+                }, "Value", "Text"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+                    <div class="col-md-3">
+                        <label>Ghi chú</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="GhiChu" class="form-control" placeholder="Ghi chú" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

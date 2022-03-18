@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebLapTop.Models.Dongsanpham>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a style="margin-left:20px;" class="btn btn-primary btn-tone m-r-5" asp-action="Create">Create New</a>
+</p>
+<div style="margin:5px;" class="card mt-1">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <table id="table1">
+
+            <tr class="text-center">
+                <th width="5%">#</th>
+                <th scope="col">Tên dòng sản phẩm </th>
+                <th scope="col">Tên danh mục </th>
+                <th></th>
+                <th></th>
+                <th width="2%"></th>
+            </tr>
+
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IddanhMucNavigation.TenDanhMuc)
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/wrench.jpg" /></a>
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Details" asp-route-id="@item.Id"><img src="~/images/list.jpg" /></a>
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.jpg" /></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+
+        </table>
+    </div>
+</div>
