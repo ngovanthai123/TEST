@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebLapTop.Models.Baiviet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a style="margin-left:20px;" class="btn btn-primary btn-tone m-r-5" asp-action="Create">Create New</a>
+</p>
+<div style="margin:5px;" class="card mt-1">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <table id="table1">
+
+            <tr class="text-center">
+                <th width="5%">#</th>
+                <th scope="col">Ảnh bài viết </th>
+                <th scope="col">Tiêu đề</th>
+                <th scope="col">Ngày đăng</th>
+                <th scope="col">Lượt xem </th>
+                <th></th>
+                <th></th>
+                <th width="2%"></th>
+            </tr>
+
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>@stt</td>
+            <td>
+                <img src="~/Images/@Html.DisplayFor(modelItem=> item.AnhBaiViet)" width="70" height="70" class="img-thumbnail" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuotXem)
+            </td>
+            <td class="text-center">
+                <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/images/wrench.jpg" /></a>
+            </td>
+            <td class="text-center">
+                <a asp-action="Details" asp-route-id="@item.Id"><img src="~/images/list.jpg" /></a>
+            </td>
+            <td class="text-center">
+                <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/images/delete.jpg" /></a>
+            </td>
+        </tr>
+                stt++;
+            }
+
+        </table>
+    </div>
+</div>
+

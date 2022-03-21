@@ -7,97 +7,107 @@
 
 
 
-<div class="card mt-3 border-warning">
-    <h5 class="card-header" style="color:black; text-align:center">
+<div class="card mt-3 border-warning"style="margin-left:50px">
+    <h3 class="card-header" style="color:black; text-align:center;margin-top:10px">
         Đơn hàng của @Context.Session.GetString("_HoVaTen").ToString()
-    </h5>     <div class="card-body">
-        <div class="row">
-            <a class="bg-primary ml-2 text-white">
-                Đơn hàng mới <span class="badge badge-light">@Model.Where(m => m.TinhTrang == 0).ToList().Count()</span>
-            </a>
+    </h3>     <div class="card-body">
+    <div class="row">
+        <button style="margin-right:10px" class="bg-primary ml-2 text-white">
+            Đơn hàng mới <span class="badge badge-light">@Model.Where(m => m.TinhTrang == 0).ToList().Count()</span>
+        </button>
 
-            <a class="bg-danger ml-2 text-white" >
-                Đơn hàng đã hủy <span class="badge badge-light">@Model.Where(m => m.TinhTrang == 2).ToList().Count()</span>
-            </a>
+        <button  style="margin-right:10px" class="bg-danger ml-2 text-white">
+            Đơn hàng đã hủy <span class="badge badge-light">@Model.Where(m => m.TinhTrang == 2).ToList().Count()</span>
+        </button>
 
-            <a class="bg-success ml-2 text-white" >
-                Đã đóng gói <span class="badge badge-light">@Model.Where(m => m.TinhTrang == 3).ToList().Count()</span>
-            </a>
+        <button  style="margin-right:10px" class="bg-success ml-2 text-white">
+            Đã đóng gói <span class="badge badge-light">@Model.Where(m => m.TinhTrang == 3).ToList().Count()</span>
+        </button>
 
-            <a class="bg-info ml-2 text-white" >
-                Đơn hàng đã nhận <span class="badge badge-light">@Model.Where(m => m.TinhTrang == 9).ToList().Count()</span>
-            </a>
-        </div>
-        <div class="row mt-3">
-            @foreach (var item in Model)
-            {
-                <div class="col-3">
-                    <div class="card">
-                        <div class="card-body" style="min-height: 808px; }">
-                            <!---->
-
-                            <p><img src="~/images/@item.AnhSanPham" /></p>
-                            <p class="card-text">Tên sách :@item.TenSanPham</p>
-                            <p class="card-text" style="font-weight:bold; font-family:'Times New Roman'">Ngày đặt hàng :<b>@item.NgayDatHang</b></p>
-                            <p class="card-text" style="color:red; font-weight:bold">Đơn giá:@String.Format("{0:N0}", item.DonGia)VNĐ</p>
-                            <p class="text-right" style="color:red; font-weight:bold">Tổng tiền:@String.Format("{0:N0}", item.SoLuong * (item.DonGia ))VNĐ</p>
-                            <p style="text-align:right; font-weight:bold">Số lượng:@item.SoLuong</p>
-                            <hr />
-                            <div style="text-align:center">
-                                @if (item.TinhTrang == 0)
-                                {
-                                    <span class="badge badge-info shadow" >Đơn hàng mới</span>
-                                }
-                                else if (item.TinhTrang == 1)
-                                {
-                                    <span class="badge badge-success shadow" >Đang xác nhận</span>
-                                }
-                                else if (item.TinhTrang == 2)
-                                {
-                                    <span class="badge badge-danger shadow" >Đã hủy</span>
-                                }
-                                else if (item.TinhTrang == 3)
-                                {
-                                    <span class="badge badge-warning shadow" >Đang đóng gói</span>
-                                }
-                                else if (item.TinhTrang == 4)
-                                {
-                                    <span class="badge badge-warning shadow" >Đang gửi vận chuyển</span>
-                                }
-                                else if (item.TinhTrang == 5)
-                                {
-                                    <span class="badge badge-primary shadow" >Đang chuyển</span>
-                                }
-                                else if (item.TinhTrang == 6)
-                                {
-                                    <span class="badge badge-danger shadow" >Thất bại</span>
-                                }
-                                else if (item.TinhTrang == 7)
-                                {
-                                    <span class="badge badge-warning shadow" >Đang chuyển hoàn</span>
-                                }
-                                else if (item.TinhTrang == 8)
-                                {
-                                    <span class="badge badge-success shadow" >Đã chuyển hoàn</span>
-                                }
-                                else
-                                {
-                                    <span class="badge badge-primary shadow" >Thành công</span>
-                                }
-                            </div>
-                            <hr />
-                            @if (item.TinhTrang == 0)
-                            {
-                                <a class="btn btn-danger text-white" style="text-align:center" asp-controller="Home" asp-route-id="@item.IdDH" asp-action="CancelOrder">Hủy</a>
-                            }
-                            <a class="btn btn-primary text-white" style="text-align:center" asp-route-id="@item.IdDH" asp-action="OrderDetail">Chi tiết</a>
-
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
+        <button  style="margin-right:10px" class="bg-info ml-2 text-white">
+            Đơn hàng đã nhận <span class="badge badge-light">@Model.Where(m => m.TinhTrang == 9).ToList().Count()</span>
+        </button>
     </div>
 </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="products-tabs">
+                    <!-- tab -->
+                    <div id="tab1" class="tab-pane active">
+                        <div class="products-slick" data-nav="#slick-nav-1" style="margin-top: 60px;">
+                            @foreach (var item in Model)
+                            {
+                            <div class="col-md-4 col-xs-6">
+                                <div class="product">
+                                    
+                                        <!---->
+
+                                        <p><img src="~/images/@item.AnhSanPham"  style="width: 200px; text-align: center; margin-left: 78px;"/></p>
+                                        <p class="card-text"style=" margin-left: 10px">Tên sách :@item.TenSanPham</p>
+                                        <p class="card-text" style="font-weight:bold; font-family:'Times New Roman';margin-left:10px">Ngày đặt hàng :<b>@item.NgayDatHang</b></p>
+                                        <p class="card-text" style="color: red; font-weight: bold; margin-left: 10px">Đơn giá:@String.Format("{0:N0}", item.DonGia)VNĐ</p>
+                                        <p class="text-right" style="color:red; font-weight:bold; margin-right:10px">Tổng tiền:@String.Format("{0:N0}", item.SoLuong * (item.DonGia))VNĐ</p>
+                                        <p style="text-align: right; font-weight: bold; margin-right: 10px">Số lượng:@item.SoLuong</p>
+                                        <hr />
+                                        <div style="text-align:center">
+                                            @if (item.TinhTrang == 0)
+                                            {
+                                                <span class="badge badge-info shadow">Đơn hàng mới</span>
+                                            }
+                                            else if (item.TinhTrang == 1)
+                                            {
+                                                <span class="badge badge-success shadow">Đang xác nhận</span>
+                                            }
+                                            else if (item.TinhTrang == 2)
+                                            {
+                                                <span class="badge badge-danger shadow">Đã hủy</span>
+                                            }
+                                            else if (item.TinhTrang == 3)
+                                            {
+                                                <span class="badge badge-warning shadow">Đang đóng gói</span>
+                                            }
+                                            else if (item.TinhTrang == 4)
+                                            {
+                                                <span class="badge badge-warning shadow">Đang gửi vận chuyển</span>
+                                            }
+                                            else if (item.TinhTrang == 5)
+                                            {
+                                                <span class="badge badge-primary shadow">Đang chuyển</span>
+                                            }
+                                            else if (item.TinhTrang == 6)
+                                            {
+                                                <span class="badge badge-danger shadow">Thất bại</span>
+                                            }
+                                            else if (item.TinhTrang == 7)
+                                            {
+                                                <span class="badge badge-warning shadow">Đang chuyển hoàn</span>
+                                            }
+                                            else if (item.TinhTrang == 8)
+                                            {
+                                                <span class="badge badge-success shadow">Đã chuyển hoàn</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-primary shadow">Thành công</span>
+                                            }
+                                        </div>
+                                        <hr />
+                                        @if (item.TinhTrang == 0)
+                                        {
+                                            <a class="btn btn-danger text-white" style="text-align: center; margin-left: 100px" asp-controller="Home" asp-route-id="@item.IdDH" asp-action="CancelOrder">Hủy</a>
+                                        }
+                                        <a class="btn btn-primary text-white" style="text-align:center" asp-route-id="@item.IdDH" asp-action="OrderDetail">Chi tiết</a>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 

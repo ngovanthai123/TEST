@@ -183,7 +183,7 @@
                                     </a>
                                     <div class="product-body" style="min-height: 275px;">
                                         <p class="product-category">Số lượng: @item.SoLuong</p>
-                                        <h3 style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">
+                                        <h3 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                                             @item.TenSanPham
                                         </h3>
                                         <h5 class="product-old-price"><del class="product-old-price">Giá: @String.Format("{0:N0}", item.GiaBan) VNĐ</del></h5>
@@ -216,9 +216,9 @@
                                     </a>
                                     <div class="product-body" style="min-height: 275px;">
                                         <p class="product-category">Số lượng: @item.SoLuong</p>
-                                        <h3 style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;max-width:215px">
+                                        <h3 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                                             @item.TenSanPham
-                                        </h3>                                      
+                                        </h3>                                    
                                         <h5 class="product-old-price">Giá: @String.Format("{0:N0}", item.GiaBan) VNĐ</h5>
                                         @*                            <h5 class="product-old-price" style="color:red">Giá KM: @String.Format("{0:N0}", item.GiaKhuyenMai) VNĐ</h5>
                                         *@                            <div class="product-rating">

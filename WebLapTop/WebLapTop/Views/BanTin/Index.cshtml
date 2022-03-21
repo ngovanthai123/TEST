@@ -1,0 +1,98 @@
+﻿@model IEnumerable<WebLapTop.Models.Baiviet>
+
+@{
+
+    ViewData["Title"] = "Trang chủ";
+}
+
+@foreach (var item in Model)
+{
+    <div class="row" style="margin-top: 40px;">
+        <h4 class="text-danger" style="text-align:center; margin-top:20px"><strong>@item.TieuDe</strong></h4>
+        <p class="text-muted" style="text-align:center">@item.NgayDang</p>
+        <div class="col-md-9" style="margin-left: 80px; width: 35%;">
+            <div class="m-3 p-3 shadow">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="~/images/@item.AnhBaiViet" style="width:579px" class="img-thumbnail" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-3" style="float: left; width: 55%; text-align: justify">
+            <p>@item.TomTat</p>
+            <div class="col">
+                <p><a asp-action="Details" asp-route-id="@item.Id">Chi tiết</a></p>
+            </div>
+        </div>
+    </div>
+}
+<div class="store-filter clearfix">
+    <ul class="store-pagination">
+        @{
+            int numberPage = ViewBag.numberPage;
+            int pageCurrent = ViewBag.pageCurrent;
+            int offset = 2;//number display page
+
+
+            //config FirstLink
+            if (pageCurrent > 1)
+            {
+                int prevPage = pageCurrent - 1;
+                var PrevLink = new Dictionary<string, string> { { "page", prevPage.ToString() } };
+                <li class="page-item"><a class="page-link" asp-controller="BanTin" asp-action="Index" asp-all-route-data="PrevLink">Trước</a></li>
+            }
+
+            int from = pageCurrent - offset;
+            int to = pageCurrent + offset;
+            if (from <= 0)
+            {
+                from = 1;
+                to = offset * 2;
+            }
+
+
+            if (to > numberPage)
+            {
+                to = numberPage;
+            }
+
+            int i;
+            for (i = from; i <= to; i++)
+            {
+                var parms = new Dictionary<string, string>
+                                                                                                                                                                                                                                                                                                                                                                        {
+                        { "page",i.ToString()}
+                    };
+                if (pageCurrent == i)
+                {
+                    <li class="page-item active "><a class="page-link" asp-controller="BanTin" asp-action="Index" asp-all-route-data="parms">@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item  "><a class="page-link" asp-controller="BanTin" asp-action="Index" asp-all-route-data="parms">@i</a></li>
+                }
+
+            }
+
+            if (pageCurrent < numberPage - (to / 2))
+            {
+                <li><a>...</a></li>
+                var LastLink = new Dictionary<string, string> { { "page", numberPage.ToString() } };
+                <li class="page-item"><a class="page-link" asp-controller="BanTin" asp-action="Index" asp-all-route-data="LastLink">Cuối</a></li>
+            }
+
+            if (pageCurrent < numberPage)
+            {
+                int nextPage = pageCurrent + 1;
+                var NextLink = new Dictionary<string, string> { { "page", nextPage.ToString() } };
+                <li class="page-item"><a class="page-link" asp-controller="BanTin" asp-action="Index" asp-all-route-data="NextLink"><i class="fa fa-angle-right"></i></a></li>
+            }
+        }
+    </ul>
+</div>
+<!-- /store bottom filter -->
+            
+

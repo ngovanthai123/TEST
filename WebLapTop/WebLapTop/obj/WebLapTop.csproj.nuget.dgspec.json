@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\TT\\WebLapTop\\WebLapTop\\WebLapTop.csproj": {}
+    "E:\\Thuc_Tap\\WebLapTop\\WebLapTop\\WebLapTop.csproj": {}
   },
   "projects": {
-    "E:\\TT\\WebLapTop\\WebLapTop\\WebLapTop.csproj": {
+    "E:\\Thuc_Tap\\WebLapTop\\WebLapTop\\WebLapTop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\TT\\WebLapTop\\WebLapTop\\WebLapTop.csproj",
+        "projectUniqueName": "E:\\Thuc_Tap\\WebLapTop\\WebLapTop\\WebLapTop.csproj",
         "projectName": "WebLapTop",
-        "projectPath": "E:\\TT\\WebLapTop\\WebLapTop\\WebLapTop.csproj",
+        "projectPath": "E:\\Thuc_Tap\\WebLapTop\\WebLapTop\\WebLapTop.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "E:\\TT\\WebLapTop\\WebLapTop\\obj\\",
+        "outputPath": "E:\\Thuc_Tap\\WebLapTop\\WebLapTop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

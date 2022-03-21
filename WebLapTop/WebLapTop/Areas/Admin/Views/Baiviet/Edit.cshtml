@@ -1,0 +1,82 @@
+﻿@model WebLapTop.Models.Baiviet
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div style="margin:5px;" class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="Baiviet" asp-action="Index">Quay về danh sách</a>
+            <span class="breadcrumb-item active"> Cập nhật bài viết</span>
+        </nav>
+    </div>
+</div>
+<div style="margin:5px;" class="row">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Cập nhật bài viết</h4>
+        </div>
+        <div class="card-content">
+            <div class="card-body">
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-md-3">
+                        <label>Tiêu đề</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="TieuDe" class="form-control" placeholder="Tiêu đề" />
+                    </div>
+                    <div class="col-md-3">
+                        <label>Tóm tắt</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <textarea asp-for="TomTat" class="form-control" placeholder="Tóm tắt"></textarea>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Nội dung</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <textarea id="editor" asp-for="NoiDung" class="form-control" placeholder="Nội dung"></textarea>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Ngày đăng</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="NgayDang" class="form-control" placeholder="Ngày đăng" />
+                    </div>
+                    <div class="col-md-3">
+                        <label>Lượt xem</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input asp-for="LuotXem" class="form-control" placeholder="Lượt xem" />
+                    </div>
+                    <div class="col-md-3">
+                        <label>Ảnh bài viết</label>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="hidden" asp-for="AnhBaiViet" class="form-control" />
+                        <input type="file" name="file" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Cập nhật" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>

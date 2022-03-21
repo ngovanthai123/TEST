@@ -375,5 +375,25 @@ namespace WebLapTop.Controllers
             return View(DonHangCuaToi);
         }
 
+        public IActionResult CancelOrder(int id)
+        {
+            var o = _context.Hoadons.Where(m => m.Id == id).FirstOrDefault();
+            var order_details = _context.Chitiethoadons.Where(m => m.IdhoaDon == id).ToList();
+            o.TinhTrang = 2;
+            foreach (var item in order_details)
+            {
+                // lấy sản phẩm trong đặt hàng chi tiết
+                var product = _context.Sanphams.Where(m => m.Id == item.IdsanPham).FirstOrDefault();
+                // cập nhật số lượng trong kho trong bảng Đặt hàng chi tiết
+                product.SoLuong += item.SoLuongMua;
+                // update và Lưu
+                _context.Sanphams.Update(product);
+                _context.SaveChanges();
+            }
+            _context.Hoadons.Update(o);
+            _context.SaveChanges();
+            return RedirectToAction("DonHangCuaToi");
+        }
+
     }
 }

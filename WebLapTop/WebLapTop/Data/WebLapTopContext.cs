@@ -18,6 +18,7 @@ namespace WebLapTop.Data
         {
         }
 
+        public virtual DbSet<Baiviet> Baiviets { get; set; }
         public virtual DbSet<Binhluan> Binhluans { get; set; }
         public virtual DbSet<Chitiethoadon> Chitiethoadons { get; set; }
         public virtual DbSet<Danhmucsanpham> Danhmucsanphams { get; set; }
