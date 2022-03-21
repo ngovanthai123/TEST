@@ -1056,3 +1056,4 @@ E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Baiviet
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Baiviet\Edit.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Baiviet\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\BanTin\Index.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Home\OrderDetail.cshtml.g.cs

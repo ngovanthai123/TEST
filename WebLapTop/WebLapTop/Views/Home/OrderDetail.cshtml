@@ -6,17 +6,19 @@
 @using Microsoft.AspNetCore.Http
 
 <div class="card mt-3 shadow border border-info">
-    <h5 class="card-header bg-info text-white text-center font-weight-bold mt-3">@ViewBag.Title</h5>
-    <div class="card-body">
+    <h2 class="card-header bg-info text-white text-center font-weight-bold mt-3">@ViewBag.Title</h2>
+    <div class="card-body"style="width:95%">
         <div class="card-deck">
             @foreach (var item in Model)
             {
                 // truy xuất giữa các bảng
-                <div class="col-12">
-                    <div class="row mt-3">
-                        <div class="card-body col-7">
-                            <h5 class="text-center">Hình ảnh:<img src="~/images/@item.IdsanPhamNavigation.AnhSanPham" width="10" class="col-4 mt-3"></h5>
+               
+                    <div class="row">
+                        <div class="col-md-5 col-md-push-2" style="float:left">
+                            <h5><img src="~/images/@item.IdsanPhamNavigation.AnhSanPham" style="width:350px"></h5>
                             <h5 class="font-weight-light">Mã Đặt hàng: @item.IdhoaDon</h5>
+                        </div>
+                        <div class="col-md-2  col-md-pull-5"style="float:right;margin-top:60px">
                             <hr />
                             <h5>Thông tin sản phẩm</h5>
                             <hr />
@@ -24,10 +26,10 @@
                             <h5 class="card-text" style="color:red; font-weight:bold">Đơn giá: @String.Format("{0:N0}", item.DonGia) VNĐ</h5>
                             <h5 class="font-weight-light text-dark">Số lượng: <b style="font-weight:bold">@item.SoLuongMua</b></h5>
                             <hr />
-                            <h5 class="text-right" style="color:red; font-weight:bold">Tổng tiền: @String.Format("{0:N0}", item.SoLuongMua * item.DonGia) VNĐ</h5>
+                            <h5 class="text-right" style="color:red; font-weight:bold">Tổng tiền: @String.Format("{0:N0}", item.SoLuongMua * item.DonGia)k VNĐ</h5>
                         </div>
-                    </div>
-                </div>
+                        </div>
+                  
             }
         </div>
     </div>

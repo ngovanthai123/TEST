@@ -28,7 +28,7 @@ namespace WebLapTop.Controllers
         public IActionResult Index(string timkiem, int? page = 0)
         {
 
-            int limit = 5
+            int limit = 5;
             int start;
             if (page > 0)
             {

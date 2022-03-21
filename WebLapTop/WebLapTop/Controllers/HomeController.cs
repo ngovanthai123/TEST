@@ -375,6 +375,12 @@ namespace WebLapTop.Controllers
             return View(DonHangCuaToi);
         }
 
+        public IActionResult OrderDetail(int id)
+        {
+
+            return View(_context.Chitiethoadons.Where(m => m.IdhoaDon == id).Include(m => m.IdsanPhamNavigation).ToList());
+        }
+
         public IActionResult CancelOrder(int id)
         {
             var o = _context.Hoadons.Where(m => m.Id == id).FirstOrDefault();
