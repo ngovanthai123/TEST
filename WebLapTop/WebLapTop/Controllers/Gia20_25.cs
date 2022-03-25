@@ -49,7 +49,7 @@ namespace WebLapTop.Controllers
 
             ViewBag.numberPage = _product.numberPage(totalProduct, limit);
             var dress = _context.Sanphams
-                .Where(sp => sp.GiaBan >= 20000000 && sp.GiaBan <= 25000000 || sp.GiaKhuyenMai > 0 && sp.GiaKhuyenMai >= 20000000 && sp.GiaKhuyenMai <= 25000000)
+                .Where(sp => sp.GiaBan > 20000000 && sp.GiaBan <= 25000000 || sp.GiaKhuyenMai > 0 && sp.GiaKhuyenMai > 20000000 && sp.GiaKhuyenMai <= 25000000)
             .Skip((int)((page - 1) * limit)).Take(limit);
 
             if (!String.IsNullOrEmpty(timkiem))

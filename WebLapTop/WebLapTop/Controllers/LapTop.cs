@@ -53,8 +53,8 @@ namespace WebLapTop.Controllers
             /* var dress = (from sp in db.Sanphams
                           join dong in db.Dongsanphams on sp.IddongSanPham equals dong.Id
                           join dm in db.Danhmucsanphams on dong.IddanhMuc equals dm.Id
-                          where (dm.Id == 1)
-                          select new 
+                          where (dm.Id ==1)
+                          select new
                           {
                               sp.TenSanPham,
                               sp.AnhSanPham,
@@ -63,8 +63,9 @@ namespace WebLapTop.Controllers
                               sp.SoLuong,
                               sp.NgayBatDauKhuyenMai,
                               sp.NgayKetThucKhuyenMai,
-                          });
- */
+                          }).Skip((int)((page - 1) * limit)).Take(limit);*/
+
+
 
             if (!String.IsNullOrEmpty(timkiem))
             {
@@ -72,6 +73,7 @@ namespace WebLapTop.Controllers
             }
             ViewBag.thongbao = dress.Count();
             return View(dress);
+            
         }
 
 

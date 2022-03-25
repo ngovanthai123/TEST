@@ -184,6 +184,7 @@ namespace WebLapTop.Controllers
             {
                 return Redirect("/Home/Login");
             }
+           
             b.SoDienThoai = cusphone;
             b.NoiNhan = cusadd;
 

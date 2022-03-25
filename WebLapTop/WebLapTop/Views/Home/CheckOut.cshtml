@@ -25,7 +25,7 @@
         <!-- row -->
         <div class="row">
             @using Microsoft.AspNetCore.Http
-            <form asp-action="CreateBill">
+            <form asp-action="CreateBill">             
                 <div class="col-md-7">
                     <!-- Billing Details -->
                     <div class="billing-details">
@@ -38,11 +38,11 @@
 
 
                         <div class="form-group">
-                            <input class="input" type="text" name="cusadd" placeholder="Địa chỉ">
+                            <input class="input" type="text" name="cusadd" placeholder="Địa chỉ" required>
                         </div>
 
                         <div class="form-group">
-                            <input class="input" type="tel" name="cusphone" placeholder="Số điện thoại">
+                            <input class="input" type="tel" name="cusphone" placeholder="Số điện thoại" required>
                         </div>
 
                     </div>

@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace WebLapTop.Controllers
 {
-    public class Gia7_10 : Controller
+    public class Gia300_500 : Controller
     {
         private WebLapTopContext db = new WebLapTopContext();
         private readonly WebLapTopContext _context;
         private readonly IProduct _product;
-        public Gia7_10(WebLapTopContext context, IProduct product)
+        public Gia300_500(WebLapTopContext context, IProduct product)
 
         {
             _context = context;
@@ -50,7 +50,7 @@ namespace WebLapTop.Controllers
             ViewBag.numberPage = _product.numberPage(totalProduct, limit);
           
             var dress = _context.Sanphams
-                .Where(sp => sp.GiaBan >= 7000000 && sp.GiaBan <= 10000000 || sp.GiaKhuyenMai>0 && sp.GiaKhuyenMai >= 7000000 && sp.GiaKhuyenMai<= 10000000)
+                .Where(sp => sp.GiaBan > 300000 && sp.GiaBan <= 500000 || sp.GiaKhuyenMai>0 && sp.GiaKhuyenMai > 300000 && sp.GiaKhuyenMai<= 500000)
             .Skip((int)((page - 1) * limit)).Take(limit);
 
             if (!String.IsNullOrEmpty(timkiem))
