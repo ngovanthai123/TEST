@@ -173,7 +173,7 @@ namespace WebLapTop.Controllers
 
         //lưu thông tin hóa đơn
         [HttpPost]
-        public async Task<IActionResult> CreateBill(int cusname, string cusadd, string cusphone)
+        public async Task<IActionResult> CreateBill(int cusname, string cusadd, string cusphone, string tinh, string huyen, string xa)
         {
 
             var session = HttpContext.Session;
@@ -186,7 +186,7 @@ namespace WebLapTop.Controllers
             }
            
             b.SoDienThoai = cusphone;
-            b.NoiNhan = cusadd;
+            b.NoiNhan = $"{tinh}, {huyen}, {xa}, {cusadd}";
 
             b.TinhTrang = 0;
             _context.Add(b);

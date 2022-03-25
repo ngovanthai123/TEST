@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TimekeepingAiCamera.Client.Responsitory.ProvincesApi;
 using WebLapTop.Data;
 using WebLapTop.Services;
 
@@ -55,6 +56,7 @@ namespace WebLapTop
             services.AddDistributedMemoryCache();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllersWithViews();
+            services.AddTransient<IProvincesApiClient, ProvincesApiClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

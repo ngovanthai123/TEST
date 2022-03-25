@@ -35,10 +35,21 @@
                         <div class="form-group">
                             <input class="input" type="text" name="cusname" placeholder="First Name" value="@Context.Session.GetString("_HoVaTen")">
                         </div>
-
-
                         <div class="form-group">
-                            <input class="input" type="text" name="cusadd" placeholder="Địa chỉ" required>
+                            <label for="streetaddress">Street Address</label>
+                            <select id="provinces" name="tinh">
+                                <option hidden disabled selected value="Thảo Đẹp Gái">Vui Lòng Chọn Tỉnh/Thành</option>
+                            </select>
+                            <select id="districts" name="huyen">
+                                <option hidden disabled selected value="Thảo Cute">Vui Lòng Chọn Quận/Huyện</option>
+
+                            </select>
+                            <select id="wards" name="xa">
+                                <option hidden disabled selected value="Thảo Dễ Thương">Vui Lòng Chọn Xã/Thị Trấn</option>
+                            </select>
+                            <div class="form-group">
+                                <input type="text" name="cusadd" class="form-control" placeholder="Ấp/xã/Số nhà">
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -69,8 +80,23 @@
                                 <div class="form-group">
                                     <input class="input" type="email" name="email" placeholder="Email">
                                 </div>
-                                <div class="form-group">
-                                    <input class="input" type="text" name="DiaChi" placeholder="Address">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="streetaddress">Street Address</label>
+                                        <select id="provinces" name="tinh">
+                                            <option hidden disabled selected value="Thảo Đẹp Gái">Vui Lòng Chọn Tỉnh/Thành</option>
+                                        </select>
+                                        <select id="districts" name="huyen">
+                                            <option hidden disabled selected value="Thảo Cute">Vui Lòng Chọn Quận/Huyện</option>
+
+                                        </select>
+                                        <select id="wards" name="xa">
+                                            <option hidden disabled selected value="Thảo Dễ Thương">Vui Lòng Chọn Xã/Thị Trấn</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="cusadd" class="form-control" placeholder="Ấp/xã/Số nhà">
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -158,3 +184,4 @@
     <!-- /container -->
 </div>
 <!-- /SECTION -->
+<script>fetch("https://provinces.open-api.vn/api/").then(e => e.json()).then(e => { e.forEach(e => { let t = document.createElement("option"); t.value = e.name, t.innerHTML = e.name, t.setAttribute("data-code", e.code), document.getElementById("provinces").appendChild(t) }) }).catch(e => console.log(e)), document.getElementById("provinces").addEventListener("change", function () { let e = this.options[this.selectedIndex].getAttribute("data-code"); console.log(e), fetch(`https://provinces.open-api.vn/api/p/${e}?depth=2`).then(e => e.json()).then(e => { e.districts.forEach(e => { let t = document.createElement("option"); t.value = e.name, t.innerHTML = e.name, t.setAttribute("data-code", e.code), document.getElementById("districts").appendChild(t) }) }).catch(e => console.log(e)) }), document.getElementById("districts").addEventListener("change", function () { let e = this.options[this.selectedIndex].getAttribute("data-code"); fetch(`https://provinces.open-api.vn/api/d/${e}?depth=2`).then(e => e.json()).then(e => { e.wards.forEach(e => { let t = document.createElement("option"); t.value = e.name, t.innerHTML = e.name, t.setAttribute("data-code", e.code), document.getElementById("wards").appendChild(t) }) }).catch(e => console.log(e)) });</script>
