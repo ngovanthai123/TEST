@@ -11,6 +11,13 @@ namespace WebLapTop.Models
         public int Quantity { get; set; }
     }
 
+    public class CartLove
+    {
+        public Sanpham Product1 { get; set; }
+        public int Quantity1 { get; set; }
+
+    }
+
     public class DonHangCuaToi
     {
         public Hoadon Hoadon { get; set; }

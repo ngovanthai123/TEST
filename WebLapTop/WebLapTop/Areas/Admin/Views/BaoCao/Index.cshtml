@@ -1,0 +1,30 @@
+﻿
+@{
+    var thangHienTai = DateTime.Today.Month;
+    var tonkho = (int)ViewData["tonkho"];
+    var soluonghoadon = (int)ViewData["soluonghoadon"];
+    var soluongsanpham = (int)ViewData["soluongsanpham"];
+    var doanhthu = (int)ViewData["doanhthu"];
+    var month = (int)ViewData["month"];
+}
+
+<form action="/admin/baocao/index" method="get">
+    <select name="month">
+        @for(var i = 1; i <= thangHienTai; i++){
+        if(i == month){
+        <option value="@i" selected>@i</option>
+        }else{
+        <option value="@i">@i</option>
+
+        }
+
+        }
+    </select>
+    <input type="submit" value="Báo Cáo" />
+</form>
+
+
+<p>Tồn kho: @tonkho</p>
+<p>Số lượng hóa đơn: @soluonghoadon</p>
+<p>Số lượng sản phẩm: @soluongsanpham</p>
+<p>Doanh thu: @doanhthu</p>

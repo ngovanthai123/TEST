@@ -34,7 +34,7 @@ namespace WebLapTop.Models
         public DateTime? NgayXacNhan { get; set; }
         [Column(TypeName = "text")]
         public string GhiChu { get; set; }
-
+        public int? TongGia { get; set; }
         [ForeignKey(nameof(IdkhachHang))]
         [InverseProperty(nameof(Khachhang.Hoadons))]
         public virtual Khachhang IdkhachHangNavigation { get; set; }

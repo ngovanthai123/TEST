@@ -60,7 +60,7 @@ namespace WebLapTop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdkhachHang,IdnhanVien,NgayLap,NoiNhan,SoDienThoai,TinhTrang,NgayXacNhan,GhiChu")] Hoadon hoadon)
+        public async Task<IActionResult> Create([Bind("Id,IdkhachHang,IdnhanVien,NgayLap,NoiNhan,SoDienThoai,TinhTrang,NgayXacNhan,GhiChu,TongGia")] Hoadon hoadon)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace WebLapTop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdkhachHang,IdnhanVien,NgayLap,NoiNhan,SoDienThoai,TinhTrang,NgayXacNhan,GhiChu")] Hoadon hoadon)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdkhachHang,IdnhanVien,NgayLap,NoiNhan,SoDienThoai,TinhTrang,NgayXacNhan,GhiChu,TongGia")] Hoadon hoadon)
         {
             if (id != hoadon.Id)
             {

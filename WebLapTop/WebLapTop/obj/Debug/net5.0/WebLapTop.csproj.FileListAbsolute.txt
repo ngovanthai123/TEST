@@ -1048,7 +1048,6 @@ E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\WebLapTop.dll
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\ref\WebLapTop.dll
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\WebLapTop.pdb
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\WebLapTop.genruntimeconfig.cache
-E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\WebLapTop.csproj.AssemblyReference.cache
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Baiviet\Create.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Baiviet\Delete.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Baiviet\Details.cshtml.g.cs
@@ -1062,3 +1061,6 @@ E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Gia300_500\Index.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Gia500_800\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Tren800\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Gia7_11\Index.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\BaoCao\Index.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Home\productlove.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\WebLapTop.csproj.AssemblyReference.cache

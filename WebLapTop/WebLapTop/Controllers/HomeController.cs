@@ -21,6 +21,8 @@ namespace WebLapTop.Controllers
         const string SessionHoten = "_HoVaTen";
         const string SessionTenDN = "_TenDN";
 
+
+        public const string CARTLove = "_cartlove";
         public const string CARTKEY = "shopcart";
         public INotyfService _notifyService { get; }
 
@@ -215,10 +217,12 @@ namespace WebLapTop.Controllers
                 d.SoLuongMua = Convert.ToInt16(i.Quantity);
 
                 amount = i.Sanpham.GiaBan * i.Quantity;
-                total += amount;
+                total +=(int)d.DonGia*i.Quantity;
                 _context.Add(d);
             }
-
+            
+            b.TongGia = total;
+            _context.Hoadons.Update(b);
             await _context.SaveChangesAsync();
 
             HttpContext.Response.Cookies.Append(HttpContext.Session.GetInt32(SessionMand).ToString(), "");
@@ -402,5 +406,92 @@ namespace WebLapTop.Controllers
             return RedirectToAction("DonHangCuaToi");
         }
 
+        public List<CartLove> GetCartItemsLove()
+        {
+            //var session = HttpContext.Session;
+            //string jsoncart = session.GetString("shopcart");
+            var jsoncartlove = HttpContext.Request.Cookies[$"{HttpContext.Session.GetInt32(SessionMand)}_cartlove"];
+            if (!string.IsNullOrEmpty(jsoncartlove))
+            {
+                return JsonConvert.DeserializeObject<List<CartLove>>(jsoncartlove);
+
+            }
+            return new List<CartLove>();
+        }
+
+        // lưu danh sách mặt hàng trong giỏ vào session 
+        void SaveCartSessionLove(List<CartLove> love)
+        {
+            var session = HttpContext.Session;
+            string jsoncartlove = JsonConvert.SerializeObject(love);
+            //session.SetString("shopcart", jsoncart);
+            HttpContext.Response.Cookies.Append($"{HttpContext.Session.GetInt32(SessionMand)}_cartlove", jsoncartlove);
+        }
+
+        public async Task<IActionResult> AddToCart1(int? id, int quanlity)
+        {
+            var b = new Hoadon();
+            b.IdkhachHang = HttpContext.Session.GetInt32(SessionMand);
+            if (b.IdkhachHang == null)
+            {
+                return Redirect("/Home/Login");
+            }
+            var sanPham = await _context.Sanphams
+                //.Include(s => s.Hang)
+                //.Include(s => s.Loai)
+                //.Include(s => s.NoiSanXuat)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (sanPham == null)
+            {
+                return NotFound("SAN PHAM KHONG TON TAI");
+            }
+            //xu ly cho hang vao gio 
+            var cart = GetCartItemsLove();
+            var cartitem = cart.Find(p => p.Product1.Id == id);
+            if (cartitem != null)
+            {
+                if (quanlity < sanPham.SoLuong)
+                {
+                    if (quanlity == 0) cartitem.Quantity1++;
+                }
+
+            }
+            else
+            {
+                if (quanlity < sanPham.SoLuong)
+                {
+                    if (quanlity == 0)
+                    {
+                        cart.Add(new CartLove() { Product1 = sanPham, Quantity1 = 1 });
+                    }
+                    else
+                        cart.Add(new CartLove() { Product1 = sanPham, Quantity1 = quanlity });
+                }
+
+
+            }
+
+            SaveCartSessionLove(cart);
+            return RedirectToAction("Index", "SanPham");
+        }
+
+        public IActionResult RemoveItemLove(int id)
+        {
+            var cart = GetCartItemsLove();
+            var item = cart.Find(p => p.Product1.Id == id);
+            if (item != null)
+            {
+                cart.Remove(item);
+            }
+            SaveCartSessionLove(cart);
+            return RedirectToAction("Index", "SanPham");
+        }
+
+        public IActionResult ProductLove()
+        {
+            return View(GetCartItemsLove());
+
+        }
     }
 }

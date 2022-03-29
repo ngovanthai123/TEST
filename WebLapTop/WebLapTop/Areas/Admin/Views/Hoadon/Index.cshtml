@@ -17,6 +17,7 @@
                 <th scope="col">Tên khách hàng </th>
                 <th scope="col">Tên nhân viên </th>
                 <th scope="col">Số điện thoại </th>
+                <th scope="col">Tổng giá </th>
                 <th scope="col">Ngày lập </th>
                 <th scope="col">Nơi nhận </th>
                 <th scope="col">Ngày xác nhận </th>
@@ -41,7 +42,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SoDienThoai)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.TongGia)
+            </td>
 
             <td>
                 @Html.DisplayFor(modelItem => item.NgayLap)

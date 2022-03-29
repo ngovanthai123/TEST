@@ -14,6 +14,9 @@ namespace WebLapTop.Controllers
 {
     public class SanPham : Controller
     {
+        const string SessionLoai = "_Loai";
+
+
         private WebLapTopContext db = new WebLapTopContext();
         private readonly WebLapTopContext _context;
         private readonly IProduct _product;
@@ -93,6 +96,10 @@ namespace WebLapTop.Controllers
                 return NotFound();
             }
 
+            ViewData["details"] = await _context.Sanphams
+                            .Where(x => x.IddongSanPham == sanpham.IddongSanPham && x.Id != id)
+                           .Include(s => s.IdnoiSanXuatNavigation)
+                           .Include(s => s.IddongSanPhamNavigation).Take(4).ToListAsync();
             return View(sanpham);
         }
     }
