@@ -48,6 +48,7 @@ namespace WebLapTop.Models
         public string MoTa { get; set; }
         [StringLength(255)]
         public string BaoHanh { get; set; }
+        public int? LuotXem { get; set; }
 
         [ForeignKey(nameof(IddongSanPham))]
         [InverseProperty(nameof(Dongsanpham.Sanphams))]

@@ -86,7 +86,13 @@ namespace WebLapTop.Controllers
             {
                 return NotFound();
             }
-
+            else
+            {
+                Sanpham bv = db.Sanphams.Find(id);
+                bv.LuotXem = bv.LuotXem + 1;
+                db.Entry(bv).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             var sanpham = await _context.Sanphams
                 .Include(s => s.IdnoiSanXuatNavigation)
                 .Include(s => s.IddongSanPhamNavigation)

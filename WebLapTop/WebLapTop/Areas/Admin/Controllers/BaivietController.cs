@@ -15,6 +15,7 @@ namespace WebLapTop.Controllers
     [Area("Admin")]
     public class BaivietController : Controller
     {
+        private WebLapTopContext db = new WebLapTopContext();
         private readonly WebLapTopContext _context;
 
         public BaivietController(WebLapTopContext context)
@@ -35,14 +36,16 @@ namespace WebLapTop.Controllers
             {
                 return NotFound();
             }
-
+            else
+            {
+                Baiviet bv = db.Baiviets.Find(id);
+                bv.LuotXem = bv.LuotXem + 1;
+                db.Entry(bv).State = EntityState.Modified;
+                db.SaveChanges();
+            }    
             var baiviet = await _context.Baiviets
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (baiviet == null)
-            {
-                return NotFound();
-            }
-
+        
             return View(baiviet);
         }
 
@@ -62,6 +65,7 @@ namespace WebLapTop.Controllers
             if (ModelState.IsValid)
             {
                 baiviet.AnhBaiViet = Upload(file);
+                baiviet.LuotXem = 0;
                 _context.Add(baiviet);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

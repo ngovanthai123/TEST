@@ -83,16 +83,17 @@ namespace WebLapTop.Controllers
             {
                 return NotFound();
             }
-
-            var sanpham = await _context.Baiviets
-                .Include(s => s.Id)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (sanpham == null)
+            else
             {
-                return NotFound();
+                Baiviet bv = db.Baiviets.Find(id);
+                bv.LuotXem = bv.LuotXem + 1;
+                db.Entry(bv).State = EntityState.Modified;
+                db.SaveChanges();
             }
-
-            return View(sanpham);
+            var baiviet = await _context.Baiviets
+                .FirstOrDefaultAsync(m => m.Id == id);
+           
+            return View(baiviet);
         }
     }
 }

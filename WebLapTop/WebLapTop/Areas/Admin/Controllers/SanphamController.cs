@@ -15,6 +15,7 @@ namespace WebLapTop.Controllers
     [Area("Admin")]
     public class SanphamController : Controller
     {
+        private WebLapTopContext db = new WebLapTopContext();
         private readonly WebLapTopContext _context;
 
         public SanphamController(WebLapTopContext context)
@@ -36,7 +37,13 @@ namespace WebLapTop.Controllers
             {
                 return NotFound();
             }
-
+            else
+            {
+                Sanpham bv = db.Sanphams.Find(id);
+                bv.LuotXem = bv.LuotXem + 1;
+                db.Entry(bv).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             var sanpham = await _context.Sanphams
                 .Include(s => s.IddongSanPhamNavigation)
                 .Include(s => s.IdloaiPhuKienNavigation)
@@ -64,11 +71,12 @@ namespace WebLapTop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IFormFile file,[Bind("Id,IdnoiSanXuat,IddongSanPham,IdloaiPhuKien,TenSanPham,AnhSanPham,Mau,GiaBan,GiaKhuyenMai,NgayBatDauKhuyenMai,NgayKetThucKhuyenMai,SoLuong,MoTa,BaoHanh")] Sanpham sanpham)
+        public async Task<IActionResult> Create(IFormFile file,[Bind("Id,IdnoiSanXuat,IddongSanPham,IdloaiPhuKien,TenSanPham,AnhSanPham,Mau,GiaBan,GiaKhuyenMai,NgayBatDauKhuyenMai,NgayKetThucKhuyenMai,SoLuong,MoTa,BaoHanh,LuotXem")] Sanpham sanpham)
         {
             if (ModelState.IsValid)
             {
                 sanpham.AnhSanPham = Upload(file);
+                sanpham.LuotXem = 0;
                 _context.Add(sanpham);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -103,7 +111,7 @@ namespace WebLapTop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(IFormFile file, int id, [Bind("Id,IdnoiSanXuat,IddongSanPham,IdloaiPhuKien,TenSanPham,AnhSanPham,Mau,GiaBan,GiaKhuyenMai,NgayBatDauKhuyenMai,NgayKetThucKhuyenMai,SoLuong,MoTa,BaoHanh")] Sanpham sanpham)
+        public async Task<IActionResult> Edit(IFormFile file, int id, [Bind("Id,IdnoiSanXuat,IddongSanPham,IdloaiPhuKien,TenSanPham,AnhSanPham,Mau,GiaBan,GiaKhuyenMai,NgayBatDauKhuyenMai,NgayKetThucKhuyenMai,SoLuong,MoTa,BaoHanh,LuotXem")] Sanpham sanpham)
         {
             if (id != sanpham.Id)
             {
@@ -147,7 +155,7 @@ namespace WebLapTop.Controllers
             {
                 return NotFound();
             }
-
+            
             var sanpham = await _context.Sanphams
                 .Include(s => s.IddongSanPhamNavigation)
                 .Include(s => s.IdloaiPhuKienNavigation)
