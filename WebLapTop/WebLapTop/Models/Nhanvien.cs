@@ -45,4 +45,31 @@ namespace WebLapTop.Models
         [InverseProperty(nameof(Hoadon.IdnhanVienNavigation))]
         public virtual ICollection<Hoadon> Hoadons { get; set; }
     }
+
+    public class ManegeLogin
+    {
+        [Display(Name = "Tên đăng nhập")]
+        [Required(ErrorMessage = "Tên đăng nhập không được bỏ trống!")]
+        public string TenDangNhap { get; set; }
+
+        [Display(Name = "Mật khẩu")]
+        [Required(ErrorMessage = "Mật khẩu không được bỏ trống!")]
+        [DataType(DataType.Password)]
+        public string MatKhau { get; set; }
+    }
+
+    public class ChangePasswordNV
+    {
+        [Display(Name = "Mật khẩu cũ")]
+        [DataType(DataType.Password)]
+        public string MatKhauCu { get; set; }
+
+        [Display(Name = "Mật khẩu mới")]
+        [DataType(DataType.Password)]
+        public string MatKhauMoi { get; set; }
+
+        [Display(Name = "Xác nhận mật khẩu")]
+        [DataType(DataType.Password)]
+        public string XacNhanMatKhau { get; set; }
+    }
 }

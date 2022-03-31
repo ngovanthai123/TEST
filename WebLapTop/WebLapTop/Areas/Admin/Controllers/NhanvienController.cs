@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebLapTop.Data;
+using WebLapTop.Library;
 using WebLapTop.Models;
 
 namespace WebLapTop.Controllers
@@ -55,10 +58,13 @@ namespace WebLapTop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,HoVaTen,SoDienThoai,Email,AnhDaiDien,TenDangNhap,MatKhau,XacNhanMatKhau,Quyen")] Nhanvien nhanvien)
+        public async Task<IActionResult> Create(IFormFile file, [Bind("Id,HoVaTen,SoDienThoai,Email,AnhDaiDien,TenDangNhap,MatKhau,XacNhanMatKhau,Quyen")] Nhanvien nhanvien)
         {
             if (ModelState.IsValid)
             {
+                nhanvien.AnhDaiDien = Upload(file);
+                nhanvien.MatKhau = SHA1.ComputeHash(nhanvien.MatKhau);
+                nhanvien.XacNhanMatKhau = SHA1.ComputeHash(nhanvien.XacNhanMatKhau);
                 _context.Add(nhanvien);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,7 +93,7 @@ namespace WebLapTop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,HoVaTen,SoDienThoai,Email,AnhDaiDien,TenDangNhap,MatKhau,XacNhanMatKhau,Quyen")] Nhanvien nhanvien)
+        public async Task<IActionResult> Edit(IFormFile file, int id, [Bind("Id,HoVaTen,SoDienThoai,Email,AnhDaiDien,TenDangNhap,MatKhau,XacNhanMatKhau,Quyen")] Nhanvien nhanvien)
         {
             if (id != nhanvien.Id)
             {
@@ -98,6 +104,12 @@ namespace WebLapTop.Controllers
             {
                 try
                 {
+                    nhanvien.MatKhau = SHA1.ComputeHash(nhanvien.MatKhau);
+                    nhanvien.XacNhanMatKhau = SHA1.ComputeHash(nhanvien.XacNhanMatKhau);
+                    if (file != null)
+                    {
+                        nhanvien.AnhDaiDien = Upload(file);
+                    }
                     _context.Update(nhanvien);
                     await _context.SaveChangesAsync();
                 }
@@ -149,6 +161,23 @@ namespace WebLapTop.Controllers
         private bool NhanvienExists(int id)
         {
             return _context.Nhanviens.Any(e => e.Id == id);
+        }
+
+        //Load ảnh sản phẩm
+        public string Upload(IFormFile file)
+        {
+            string UploadFileName = null;
+            if (file != null)
+            {
+                UploadFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                var path = $"wwwroot\\anhNV\\{ UploadFileName}";
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+
+            }
+            return UploadFileName;
         }
     }
 }

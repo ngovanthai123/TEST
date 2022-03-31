@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<WebLapTop.Models.Sanpham>
-
+@using Newtonsoft.Json
+@inject IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Sản Phẩm";
 }
@@ -171,6 +173,12 @@
                 <!-- /store top filter -->
                 <!-- store products -->
                 <div class="row">
+                    @{ var jsoncartlove = Context.Request.Cookies[$"{Context.Session.GetInt32("_Id")}_cartlove"];
+                        var productlove = new List<CartLove>();
+                        @if (!string.IsNullOrEmpty(jsoncartlove))
+                        {
+                            productlove = JsonConvert.DeserializeObject<List<CartLove>>(jsoncartlove);
+                        } }
                     <!-- product -->
                     @foreach (var item in Model)
                     {
@@ -196,7 +204,20 @@
                                             <i class="fa fa-star"></i>
                                         </div>
                                         <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                            @{ var dalove = productlove.FirstOrDefault(loveyou => loveyou.Product1.Id == item.Id);}
+
+                                            @if (dalove != null)
+                                            {
+                                                <a asp-controller="Home" asp-action="RemoveItemLove" asp-route-id="@item.Id" class="heart d-flex justify-content-center align-items-center " style="background-color:#ed71a3;">
+                                                    <span><i class="fa fa-heart-o"></i></span>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="Home" asp-action="AddToCart1" asp-route-id="@item.Id" class="heart d-flex justify-content-center align-items-center ">
+                                                    <span><i class="fa fa-heart-o"></i></span>
+                                                </a>
+                                            }
                                             <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
                                             <a class="quick-view" asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye"></i><span class="tooltipp"></span></a>
                                         </div>
@@ -228,7 +249,20 @@
                                             <i class="fa fa-star"></i>
                                         </div>
                                         <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                            @{ var dalove = productlove.FirstOrDefault(loveyou => loveyou.Product1.Id == item.Id);}
+
+                                            @if (dalove != null)
+                                            {
+                                                <a asp-controller="Home" asp-action="RemoveItemLove" asp-route-id="@item.Id" class="heart d-flex justify-content-center align-items-center " style="background-color:#ed71a3;">
+                                                    <span><i class="fa fa-heart-o"></i></span>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="Home" asp-action="AddToCart1" asp-route-id="@item.Id" class="heart d-flex justify-content-center align-items-center ">
+                                                    <span><i class="fa fa-heart-o"></i></span>
+                                                </a>
+                                            }
                                             <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
                                             <a class="quick-view" asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye"></i><span class="tooltipp"></span></a>
                                         </div>
@@ -277,7 +311,7 @@
                             for (i = from; i <= to; i++)
                             {
                                 var parms = new Dictionary<string, string>
-                                                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                                                                        {
                         { "page",i.ToString()}
                     };
                                 if (pageCurrent == i)

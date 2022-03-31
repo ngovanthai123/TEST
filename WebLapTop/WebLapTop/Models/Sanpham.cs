@@ -33,7 +33,11 @@ namespace WebLapTop.Models
         public string AnhSanPham { get; set; }
         [StringLength(255)]
         public string Mau { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = false)]
         public int GiaBan { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = false)]
         public int GiaKhuyenMai { get; set; }
         [Column(TypeName = "date")]
         public DateTime? NgayBatDauKhuyenMai { get; set; }

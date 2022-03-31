@@ -1064,3 +1064,5 @@ E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Gia7_11\Index.cshtm
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\BaoCao\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Home\productlove.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\WebLapTop.csproj.AssemblyReference.cache
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\ChangePassword.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\Login.cshtml.g.cs
