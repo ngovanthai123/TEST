@@ -76,6 +76,7 @@ namespace WebLapTop.Controllers
         {
             if (ModelState.IsValid)
             {
+                sanpham.LuotXem = 0;
                 _context.Sanphams.Add(sanpham);
                 await _context.SaveChangesAsync();
                 if (file.Count() != 0)
