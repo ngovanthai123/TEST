@@ -19,7 +19,7 @@ namespace WebLapTop.Models
         [Column("IDSanPham")]
         public int? IdsanPham { get; set; }
         public int? SoLuongMua { get; set; }
-        public int? DonGia { get; set; }
+        public int DonGia { get; set; }
 
         [ForeignKey(nameof(IdhoaDon))]
         [InverseProperty(nameof(Hoadon.Chitiethoadons))]

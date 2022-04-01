@@ -35,6 +35,7 @@ namespace WebLapTop.Models
         [Column(TypeName = "text")]
         public string GhiChu { get; set; }
         public int? TongGia { get; set; }
+
         [ForeignKey(nameof(IdkhachHang))]
         [InverseProperty(nameof(Khachhang.Hoadons))]
         public virtual Khachhang IdkhachHangNavigation { get; set; }

@@ -33,12 +33,11 @@ namespace WebLapTop.Models
         public string TenDangNhap { get; set; }
         [Required]
         [StringLength(255)]
-        [DataType(DataType.Password)]
         public string MatKhau { get; set; }
+        [StringLength(255)]
         [Required(ErrorMessage = "Mật khẩu không được bỏ trống!")]
         [Compare("MatKhau", ErrorMessage = "Xác nhận mật khẩu không chính xác!")]
         [DataType(DataType.Password)]
-        [StringLength(255)]
         public string XacNhanMatKhau { get; set; }
         public int Quyen { get; set; }
 

@@ -15,6 +15,7 @@ namespace WebLapTop.Models
         {
             Binhluans = new HashSet<Binhluan>();
             Chitiethoadons = new HashSet<Chitiethoadon>();
+            ImagesSanPhams = new HashSet<ImagesSanPham>();
         }
 
         [Key]
@@ -33,10 +34,8 @@ namespace WebLapTop.Models
         public string AnhSanPham { get; set; }
         [StringLength(255)]
         public string Mau { get; set; }
-
         [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = false)]
         public int GiaBan { get; set; }
-
         [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = false)]
         public int GiaKhuyenMai { get; set; }
         [Column(TypeName = "date")]
@@ -63,5 +62,7 @@ namespace WebLapTop.Models
         public virtual ICollection<Binhluan> Binhluans { get; set; }
         [InverseProperty(nameof(Chitiethoadon.IdsanPhamNavigation))]
         public virtual ICollection<Chitiethoadon> Chitiethoadons { get; set; }
+        [InverseProperty(nameof(ImagesSanPham.IdSanphamNavigation))]
+        public virtual ICollection<ImagesSanPham> ImagesSanPhams { get; set; }
     }
 }

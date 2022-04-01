@@ -11,25 +11,20 @@
     <div class="container">
         <!-- row -->@if (Model.GiaKhuyenMai > 0)
         {
-<div class="row">
-    <!-- Product main img -->
-    <div class="col-md-5 col-md-push-2">
-        <div id="product-main-img">
-            <div class="product-preview">
-                <img src="~/images/@Html.DisplayFor(model => model.AnhSanPham)" alt="">
-            </div>
-
-            <div class="product-preview">
-
-            </div>
-
-            <div class="product-preview">
-
-            </div>
-
-            <div class="product-preview">
-
-            </div>
+            <div class="row">
+                <!-- Product main img -->
+                <div class="col-md-5 col-md-push-2">
+                    <div id="product-main-img">
+                        <div class="product-preview">
+                            <img src="~/images/@Html.DisplayFor(model => model.AnhSanPham)" alt="">
+                        </div>
+                        <span>@Model.ImagesSanPhams.Count()</span>
+                        @foreach(var item in Model.ImagesSanPhams)
+                        {
+                        <div class="product-preview">
+                            <img src="~/images/@item.Image" width="600" />
+                        </div>
+                            }
         </div>
     </div>
     <!-- /Product main img -->
@@ -39,18 +34,13 @@
             <div class="product-preview">
                 <img src="~/images/@Html.DisplayFor(model => model.AnhSanPham)" alt="">
             </div>
-
-            <div class="product-preview">
-
-            </div>
-
-            <div class="product-preview">
-
-            </div>
-
-            <div class="product-preview">
-
-            </div>
+            <span>@Model.ImagesSanPhams.Count()</span>
+             @foreach (var item in Model.ImagesSanPhams)
+             {
+                    <div class="product-preview">
+                        <img src="~/images/@item.Image" width="600"/>
+                    </div>
+             }
         </div>
     </div>
     <!-- /Product thumb imgs -->
@@ -334,18 +324,13 @@
             <div class="product-preview">
                 <img src="~/images/@Html.DisplayFor(model => model.AnhSanPham)" alt="">
             </div>
-
-            <div class="product-preview">
-
-            </div>
-
-            <div class="product-preview">
-
-            </div>
-
-            <div class="product-preview">
-
-            </div>
+             <span>@Model.ImagesSanPhams.Count()</span>
+             @foreach (var item in Model.ImagesSanPhams)
+             {
+                <div class="product-preview">
+                    <img src="~/images/@item.Image" width="600"   />
+                </div>
+             }
         </div>
     </div>
     <!-- /Product main img -->
@@ -355,18 +340,14 @@
             <div class="product-preview">
                 <img src="~/images/@Html.DisplayFor(model => model.AnhSanPham)" alt="">
             </div>
+             <span>@Model.ImagesSanPhams.Count()</span>
+             @foreach (var item in Model.ImagesSanPhams)
+             {
 
             <div class="product-preview">
-
+                <img src="~/images/@item.Image" width="600"  />
             </div>
-
-            <div class="product-preview">
-
-            </div>
-
-            <div class="product-preview">
-
-            </div>
+             }
         </div>
     </div>
     <!-- /Product thumb imgs -->
@@ -757,5 +738,4 @@ else
     <!-- /row -->
 </div>
 <!-- /container -->
-</div>
 <!-- /Section -->

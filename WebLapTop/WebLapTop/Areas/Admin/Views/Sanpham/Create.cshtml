@@ -23,7 +23,7 @@
         </div>
         <div class="card-content">
             <div class="card-body">
-                <form asp-action="Create" enctype="multipart/form-data">
+                <form asp-action="Create" enctype="multipart/form-data" method="post">
                     <div class="form-body">
                         <div class="row">
                             <div class="col-md-3">
@@ -57,7 +57,7 @@
                                 <label>Ảnh Sản Phẩm</label>
                             </div>
                             <div class="col-md-8 form-group">
-                                <input type="file" name="file" />
+                                <input type="file" name="file" multiple />
                             </div>
                             <div class="col-md-3">
                                 <label>Giá bán</label>

@@ -96,6 +96,7 @@ namespace WebLapTop.Controllers
             var sanpham = await _context.Sanphams
                 .Include(s => s.IdnoiSanXuatNavigation)
                 .Include(s => s.IddongSanPhamNavigation)
+                .Include(s => s.ImagesSanPhams)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sanpham == null)
             {

@@ -48,6 +48,7 @@ namespace WebLapTop.Controllers
                 .Include(s => s.IddongSanPhamNavigation)
                 .Include(s => s.IdloaiPhuKienNavigation)
                 .Include(s => s.IdnoiSanXuatNavigation)
+                
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sanpham == null)
             {
@@ -71,14 +72,31 @@ namespace WebLapTop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IFormFile file,[Bind("Id,IdnoiSanXuat,IddongSanPham,IdloaiPhuKien,TenSanPham,AnhSanPham,Mau,GiaBan,GiaKhuyenMai,NgayBatDauKhuyenMai,NgayKetThucKhuyenMai,SoLuong,MoTa,BaoHanh,LuotXem")] Sanpham sanpham)
+        public async Task<IActionResult> Create(List<IFormFile> file, [Bind("Id,IdnoiSanXuat,IddongSanPham,IdloaiPhuKien,TenSanPham,AnhSanPham,Mau,GiaBan,GiaKhuyenMai,NgayBatDauKhuyenMai,NgayKetThucKhuyenMai,SoLuong,MoTa,BaoHanh,LuotXem")] Sanpham sanpham)
         {
             if (ModelState.IsValid)
             {
-                sanpham.AnhSanPham = Upload(file);
-                sanpham.LuotXem = 0;
-                _context.Add(sanpham);
+                _context.Sanphams.Add(sanpham);
                 await _context.SaveChangesAsync();
+                if (file.Count() != 0)
+                {
+                    var imagesProduct = new List<ImagesSanPham>();
+                    foreach (var item in file)
+                    {
+                        imagesProduct.Add(
+                            new ImagesSanPham()
+                            {
+                                IdSanpham = sanpham.Id,
+                                Image = Upload(item)
+                            });
+                    }
+
+                    var p = _context.Sanphams.Find(sanpham.Id);
+                    p.AnhSanPham = imagesProduct[0].Image;
+
+                    _context.ImagesSanPhams.AddRange(imagesProduct);
+                    _context.SaveChanges();
+                }
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IddongSanPham"] = new SelectList(_context.Dongsanphams, "Id", "TenSanPham", sanpham.IddongSanPham);

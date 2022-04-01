@@ -24,6 +24,7 @@ namespace WebLapTop.Data
         public virtual DbSet<Danhmucsanpham> Danhmucsanphams { get; set; }
         public virtual DbSet<Dongsanpham> Dongsanphams { get; set; }
         public virtual DbSet<Hoadon> Hoadons { get; set; }
+        public virtual DbSet<ImagesSanPham> ImagesSanPhams { get; set; }
         public virtual DbSet<Khachhang> Khachhangs { get; set; }
         public virtual DbSet<Loaiphukien> Loaiphukiens { get; set; }
         public virtual DbSet<Nhanvien> Nhanviens { get; set; }
@@ -85,6 +86,14 @@ namespace WebLapTop.Data
                     .WithMany(p => p.Hoadons)
                     .HasForeignKey(d => d.IdnhanVien)
                     .HasConstraintName("FK__HOADON__IDNhanVi__267ABA7A");
+            });
+
+            modelBuilder.Entity<ImagesSanPham>(entity =>
+            {
+                entity.HasOne(d => d.IdSanphamNavigation)
+                    .WithMany(p => p.ImagesSanPhams)
+                    .HasForeignKey(d => d.IdSanpham)
+                    .HasConstraintName("FK__ImagesSan__IdSan__49C3F6B7");
             });
 
             modelBuilder.Entity<Loaiphukien>(entity =>

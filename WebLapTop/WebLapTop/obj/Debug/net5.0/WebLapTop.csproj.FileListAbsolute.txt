@@ -1022,11 +1022,9 @@ E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Home\SignUp.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\HP\Index.cshtml.g.cs
-E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\LapTop\Details.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\LapTop\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Lenovo\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\MSI\Index.cshtml.g.cs
-E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\PhuKien\Details.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\PhuKien\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Ram\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\SanPham\Details.cshtml.g.cs
@@ -1063,7 +1061,12 @@ E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Tren800\Index.cshtm
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Gia7_11\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\BaoCao\Index.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\Home\productlove.cshtml.g.cs
-E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\WebLapTop.csproj.AssemblyReference.cache
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\ChangePassword.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\Login.cshtml.g.cs
 E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Views\BanTin\Details.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\WebLapTop.csproj.AssemblyReference.cache
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\ImagesSanPham\Create.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\ImagesSanPham\Delete.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\ImagesSanPham\Details.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\ImagesSanPham\Edit.cshtml.g.cs
+E:\Thuc_Tap\WebLapTop\WebLapTop\obj\Debug\net5.0\Razor\Areas\Admin\Views\ImagesSanPham\Index.cshtml.g.cs
