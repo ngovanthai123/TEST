@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using WebLapTop.Data;
 using WebLapTop.Models;
 
@@ -219,6 +220,51 @@ namespace WebLapTop.Controllers
 
             }
             return UploadFileName;
+        }
+
+        public IActionResult Export()
+        {
+            var data = _context.Sanphams.ToList();
+            var stream = new MemoryStream();
+
+            using (var package = new ExcelPackage(stream))
+            {
+                var sheet = package.Workbook.Worksheets.Add("SanPham");
+                // đỗ dữ liệu vào sheet
+
+                sheet.Cells[1, 1].Value = "ID Nơi sản xuất";
+                sheet.Cells[1, 2].Value = "ID loại phụ kiện";
+                sheet.Cells[1, 3].Value = "ID dòng";
+                sheet.Cells[1, 4].Value = "Tên sản phẩm";
+                sheet.Cells[1, 5].Value = "Giá bán";
+                sheet.Cells[1, 6].Value = "Giá khuyến mãi";
+                sheet.Cells[1, 7].Value = "Số lượng";
+                sheet.Cells[1, 8].Value = "Ngày bắt đầu khuyến mãi";
+                sheet.Cells[1, 9].Value = "Ngày kết thúc khuyến mãi";
+
+                int rowIdx = 2;
+                foreach (var r in data)
+                {
+
+                    sheet.Cells[rowIdx, 1].Value = r.IdnoiSanXuat;
+                    sheet.Cells[rowIdx, 2].Value = r.IdloaiPhuKien;
+                    sheet.Cells[rowIdx, 3].Value = r.IddongSanPham;
+                    sheet.Cells[rowIdx, 4].Value = r.TenSanPham;
+                    sheet.Cells[rowIdx, 5].Value = r.GiaBan;
+                    sheet.Cells[rowIdx, 6].Value = r.GiaKhuyenMai;
+                    sheet.Cells[rowIdx, 7].Value = r.SoLuong;
+                    sheet.Cells[rowIdx, 8].Value = r.NgayBatDauKhuyenMai;
+                    sheet.Cells[rowIdx, 9].Value = r.NgayKetThucKhuyenMai;
+
+                    rowIdx++;
+
+                }
+
+                package.Save();
+            }
+            stream.Position = 0;
+            var filename = $"SanPham{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx";
+            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", filename);
         }
     }
 }
