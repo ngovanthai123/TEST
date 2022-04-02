@@ -263,8 +263,8 @@
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                                 <div class="avatar mr-1">
-                                    <img src="~/anhNV/425a6a97-f06e-467b-9f7e-f30bb341ed45_123.jpg" />
-                                    @*<img src="~/@Context.Session.GetString("_AnhDaiDien").ToLower()" class="user-image" alt="User Image">*@
+                                   @* <img src="~/anhNV/425a6a97-f06e-467b-9f7e-f30bb341ed45_123.jpg" />*@
+                                    <img src="~/anhNV/@Context.Session.GetString("_AnhDaiDien").ToLower()" class="user-image" alt="User Image">
                                 </div>
                                 <div class="d-none d-md-block d-lg-inline-block">Hi,  @Context.Session.GetString("_Hoten").ToString()</div>
                             </a>
