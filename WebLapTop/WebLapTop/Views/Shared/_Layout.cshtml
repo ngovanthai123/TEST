@@ -235,13 +235,23 @@
             </div>
             <!-- container -->
         </div>
-
+        
         <div class="dropdown">
-            <a style="color:black; font-weight:bold" asp-controller="Home" asp-action="Cart">
-                <i class="fa fa-shopping-cart" style=" margin-left: 1238px;"></i>
-                <span>Giỏ hàng</span>
-                <div class="qty"></div>
-            </a>
+            @{ //var session = HttpContextAccessor.HttpContext.Session;
+                //string jsoncart = session.GetString(BookStore.Controllers.HomeController.CARTKEY);
+                var jsoncart = Context.Request.Cookies[Context.Session.GetInt32("_Id").ToString()];
+
+                if (!string.IsNullOrEmpty(jsoncart))
+                {
+                    var cart = JsonConvert.DeserializeObject<List<CartItem>>(jsoncart);
+                        <a class="shopping-cart" asp-controller="Home" asp-action="Cart"style="margin-left: 1238px;">
+                            (@cart.Count)
+                            <i class="fa fa-shopping-cart" ></i>
+                            <span>Giỏ hàng</span>
+                        </a>
+                }
+            }
+            
         </div>
 
         <!-- /MAIN HEADER -->

@@ -10,6 +10,7 @@ using WebLapTop.Models;
 
 namespace WebLapTop.Controllers
 {
+    [Area("Admin")]
     public class ImagesSanPhamController : Controller
     {
         private readonly WebLapTopContext _context;

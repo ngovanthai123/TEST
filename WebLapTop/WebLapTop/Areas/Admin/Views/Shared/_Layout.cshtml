@@ -21,7 +21,7 @@
         <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
-                   
+
                     @if (@Context.Session.GetString("_Id") == null)
                     {
                     }
@@ -29,15 +29,15 @@
 
                     {
 
-                @if (Convert.ToInt32(@Context.Session.GetInt32("_Quyen")) == 0)
-                {
-                <a><i class="fa fa-circle text-success"></i> Nhân Viên</a> }
-            else
-            {
-                <a ><i class="fa fa-circle text-success"></i> Quản Lý</a>}}
+        @if (Convert.ToInt32(@Context.Session.GetInt32("_Quyen")) == 0)
+        {
+<a><i class="fa fa-circle text-success"></i> Nhân Viên</a> }
+else
+{
+<a><i class="fa fa-circle text-success"></i> Quản Lý</a>}}
 
                 </div>
-               
+
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class='sidebar-title'>Main Menu</li>
@@ -47,24 +47,30 @@
                         }
                         else
                         {
-                    @if (Convert.ToInt32(@Context.Session.GetInt32("_Quyen")) == 1)//Quản lý
-                    {
+            @if (Convert.ToInt32(@Context.Session.GetInt32("_Quyen")) == 1)//Quản lý
+            {
+<li class="sidebar-item active ">
+    <a asp-area="Admin" asp-controller="Home" asp-action="Index" class='sidebar-link'>
+        <i data-feather="home" width="20"></i>
+        <span>Trang chủ</span>
+    </a>
+</li>
                     <li class="sidebar-item active ">
-                        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class='sidebar-link'>
-                            <i data-feather="home" width="20"></i>
-                            <span>Trang chủ</span>
+                        <a asp-area="Admin" asp-controller="DanhMucSanPham" asp-action="Index" class='sidebar-link'>
+                            <i data-feather="" width="20"></i>
+                            <span>Danh mục sản phẩm</span>
                         </a>
                     </li>
                                         <li class="sidebar-item active ">
-                                            <a asp-area="Admin" asp-controller="DanhMucSanPham" asp-action="Index" class='sidebar-link'>
+                                            <a asp-area="Admin" asp-controller="SanPham" asp-action="Index" class='sidebar-link'>
                                                 <i data-feather="" width="20"></i>
-                                                <span>Danh mục sản phẩm</span>
+                                                <span>Sản phẩm</span>
                                             </a>
                                         </li>
                                                             <li class="sidebar-item active ">
-                                                                <a asp-area="Admin" asp-controller="SanPham" asp-action="Index" class='sidebar-link'>
+                                                                <a asp-area="Admin" asp-controller="ImagesSanPham" asp-action="Index" class='sidebar-link'>
                                                                     <i data-feather="" width="20"></i>
-                                                                    <span>Sản phẩm</span>
+                                                                    <span>Ảnh sản phẩm</span>
                                                                 </a>
                                                             </li>
                                                                                 <li class="sidebar-item active ">
@@ -138,19 +144,26 @@
                                                                                                                                                                                                                                     <i data-feather="home" width="20"></i>
                                                                                                                                                                                                                                     <span>Bài viết</span>
                                                                                                                                                                                                                                 </a>
-                                                                                                                                                                                                                            </li> }
-                                                                                                                                                                                                                                            else
-                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                            </li>
+ }
+                                                                                                                                                                                                                        else
+                                                                                                                                                                                                                        {
+                                                                                                                                                                                                        <li class="sidebar-item active ">
+                                                                                                                                                                                                            <a asp-area="Admin" asp-controller="DanhMucSanPham" asp-action="Index" class='sidebar-link'>
+                                                                                                                                                                                                                <i data-feather="" width="20"></i>
+                                                                                                                                                                                                                <span>Danh mục sản phẩm</span>
+                                                                                                                                                                                                            </a>
+                                                                                                                                                                                                        </li>
                                                                                                                                                                                                                             <li class="sidebar-item active ">
-                                                                                                                                                                                                                                <a asp-area="Admin" asp-controller="DanhMucSanPham" asp-action="Index" class='sidebar-link'>
+                                                                                                                                                                                                                                <a asp-area="Admin" asp-controller="SanPham" asp-action="Index" class='sidebar-link'>
                                                                                                                                                                                                                                     <i data-feather="" width="20"></i>
-                                                                                                                                                                                                                                    <span>Danh mục sản phẩm</span>
+                                                                                                                                                                                                                                    <span>Sản phẩm</span>
                                                                                                                                                                                                                                 </a>
                                                                                                                                                                                                                             </li>
                                                                                                                                                                                                                                                 <li class="sidebar-item active ">
-                                                                                                                                                                                                                                                    <a asp-area="Admin" asp-controller="SanPham" asp-action="Index" class='sidebar-link'>
+                                                                                                                                                                                                                                                    <a asp-area="Admin" asp-controller="ImagesSanPham" asp-action="Index" class='sidebar-link'>
                                                                                                                                                                                                                                                         <i data-feather="" width="20"></i>
-                                                                                                                                                                                                                                                        <span>Sản phẩm</span>
+                                                                                                                                                                                                                                                        <span>Ảnh sản phẩm</span>
                                                                                                                                                                                                                                                     </a>
                                                                                                                                                                                                                                                 </li>
                                                                                                                                                                                                                                                                     <li class="sidebar-item active ">
@@ -185,30 +198,31 @@
                                                                                                                                                                                                                                                                                                                                         </li>
                                                                                                                                                                                                                                                                                                                                     </ul>
                                                                                                                                                                                                                                                                                                                                 </li>
-                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                                        <li class="sidebar-item  has-sub">
-                                                                                                                                                                                                                                                                                                                                                                            <a href="#" class='sidebar-link'>
-                                                                                                                                                                                                                                                                                                                                                                                <i data-feather="user" width="20"></i>
-                                                                                                                                                                                                                                                                                                                                                                                <span>Truy cập</span>
+
+                                                                                                                                                                                                                                                                                                                                                    <li class="sidebar-item  has-sub">
+                                                                                                                                                                                                                                                                                                                                                        <a href="#" class='sidebar-link'>
+                                                                                                                                                                                                                                                                                                                                                            <i data-feather="user" width="20"></i>
+                                                                                                                                                                                                                                                                                                                                                            <span>Truy cập</span>
+                                                                                                                                                                                                                                                                                                                                                        </a>
+                                                                                                                                                                                                                                                                                                                                                        <ul class="submenu ">
+                                                                                                                                                                                                                                                                                                                                                            <li>
+                                                                                                                                                                                                                                                                                                                                                                <a asp-area="Admin" asp-controller="" asp-action="">Đăng nhập</a>
+                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                                                                                                                                                                                                                                                                        <li class="sidebar-item active ">
+                                                                                                                                                                                                                                                                                                                                                                            <a asp-area="Admin" asp-controller="BinhLuan" asp-action="Index" class='sidebar-link'>
+                                                                                                                                                                                                                                                                                                                                                                                <i data-feather="home" width="20"></i>
+                                                                                                                                                                                                                                                                                                                                                                                <span>Bình luận</span>
                                                                                                                                                                                                                                                                                                                                                                             </a>
-                                                                                                                                                                                                                                                                                                                                                                            <ul class="submenu ">
-                                                                                                                                                                                                                                                                                                                                                                                <li>
-                                                                                                                                                                                                                                                                                                                                                                                    <a asp-area="Admin" asp-controller="" asp-action="">Đăng nhập</a>
-                                                                                                                                                                                                                                                                                                                                                                                </li>
-                                                                                                                                                                                                                                                                                                                                                                            </ul>
                                                                                                                                                                                                                                                                                                                                                                         </li>
                                                                                                                                                                                                                                                                                                                                                                                             <li class="sidebar-item active ">
-                                                                                                                                                                                                                                                                                                                                                                                                <a asp-area="Admin" asp-controller="BinhLuan" asp-action="Index" class='sidebar-link'>
+                                                                                                                                                                                                                                                                                                                                                                                                <a asp-area="Admin" asp-controller="BaiViet" asp-action="Index" class='sidebar-link'>
                                                                                                                                                                                                                                                                                                                                                                                                     <i data-feather="home" width="20"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                    <span>Bình luận</span>
+                                                                                                                                                                                                                                                                                                                                                                                                    <span>Bài viết</span>
                                                                                                                                                                                                                                                                                                                                                                                                 </a>
                                                                                                                                                                                                                                                                                                                                                                                             </li>
-                                                                                                                                                                                                                                                                                                                                                                                                                <li class="sidebar-item active ">
-                                                                                                                                                                                                                                                                                                                                                                                                                    <a asp-area="Admin" asp-controller="BaiViet" asp-action="Index" class='sidebar-link'>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <i data-feather="home" width="20"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                                        <span>Bài viết</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </a>
-                                                                                                                                                                                                                                                                                                                                                                                                                </li>}}
+}}
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -263,7 +277,7 @@
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                                 <div class="avatar mr-1">
-                                   @* <img src="~/anhNV/425a6a97-f06e-467b-9f7e-f30bb341ed45_123.jpg" />*@
+                                    @* <img src="~/anhNV/425a6a97-f06e-467b-9f7e-f30bb341ed45_123.jpg" />*@
                                     <img src="~/anhNV/@Context.Session.GetString("_AnhDaiDien").ToLower()" class="user-image" alt="User Image">
                                 </div>
                                 <div class="d-none d-md-block d-lg-inline-block">Hi,  @Context.Session.GetString("_Hoten").ToString()</div>

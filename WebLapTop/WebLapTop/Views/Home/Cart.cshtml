@@ -8,19 +8,21 @@
     int total = 0;      // tổng tiền
 
 <table class="table" style="width: 90%; margin-left: 85px;">
-    <tr>
-        <th>STT</th>
-        <th>Hình ảnh</th>
-        <th style="width:500px">Sản phẩm</th>
-        <th>Giá</th>
-        <th>Số lượng</th>
-        <th>Thành tiền</th>
-        <th></th>
-    </tr>
     @foreach (var i in Model)
     {
         if (i.Sanpham.GiaKhuyenMai > 0)
         {
+            <tr>
+                <th>STT</th>
+                <th>Hình ảnh</th>
+                <th style="width:500px">Sản phẩm</th>
+                <th>Giá bán</th>
+                <th>Giá khuyến mãi</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+
             amount = i.Sanpham.GiaKhuyenMai * i.Quantity;
             total += amount;
             <tr class="align-middle">
@@ -30,6 +32,7 @@
 
                 </td>
                 <td>@(i.Sanpham.TenSanPham)</td>
+                <td>@((i.Sanpham.GiaBan).ToString("n0"))</td>
                 <td>@((i.Sanpham.GiaKhuyenMai).ToString("n0"))</td>
                 <td>
                     <form asp-action="UpdateItem" method="post">
@@ -51,6 +54,17 @@
         }
         else
         {
+            <tr>
+                <th>STT</th>
+                <th>Hình ảnh</th>
+                <th style="width:500px">Sản phẩm</th>
+                <th>Giá bán</th>
+         
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+
             amount = i.Sanpham.GiaBan * i.Quantity;
             total += amount;
             <tr class="align-middle">
@@ -61,6 +75,7 @@
                 </td>
                 <td>@(i.Sanpham.TenSanPham)</td>
                 <td>@((i.Sanpham.GiaBan).ToString("n0"))</td>
+               
                 <td>
                     <form asp-action="UpdateItem" method="post">
                         <div class="row">
