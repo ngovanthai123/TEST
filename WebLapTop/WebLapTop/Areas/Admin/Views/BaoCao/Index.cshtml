@@ -8,7 +8,7 @@
     var month = (int)ViewData["month"];
 }
 
-<form action="/admin/baocao/index" method="get">
+<form action="/admin/baocao/index" method="get" style="text-align:center">
     <select name="month">
         @for(var i = 1; i <= thangHienTai; i++){
         if(i == month){
@@ -24,7 +24,7 @@
 </form>
 
 
-<p>Tồn kho: @tonkho</p>
-<p>Số lượng hóa đơn: @soluonghoadon</p>
-<p>Số lượng sản phẩm: @soluongsanpham</p>
-<p>Doanh thu: @doanhthu</p>
+<p style="text-align:center">Tồn kho: @tonkho</p>
+<p style="text-align:center">Số lượng hóa đơn: @soluonghoadon</p>
+<p style="text-align:center">Số lượng sản phẩm: @soluongsanpham</p>
+<p style="text-align:center">Doanh thu: @doanhthu</p>

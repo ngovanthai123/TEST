@@ -200,7 +200,6 @@
 
                 </div>
                 <!-- /store top filter -->
-                
                 <!-- store products -->
                 <div class="row">
                     @{ var jsoncartlove = Context.Request.Cookies[$"{Context.Session.GetInt32("_Id")}_cartlove"];
@@ -301,6 +300,28 @@
                             </div>
                         }
                     }
+                </div>
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+                <div class="row" style="margin-top:60px">
+                    <div class="col-md-6 " style="text-align:end">
+                        <a asp-action="Search"
+                           asp-route-pageNumber="@(Model.PageIndex - 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn css-18 @prevDisabled">
+                            Trước
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-action="Search"
+                           asp-route-pageNumber="@(Model.PageIndex + 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn css-18 @nextDisabled">
+                            Sau
+                        </a>
+                    </div>
                 </div>
                 <!-- /store products -->
                 <!-- store bottom filter -->
