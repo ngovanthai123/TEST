@@ -1,11 +1,10 @@
-﻿@model IEnumerable<WebLapTop.Models.Sanpham>
+﻿@model PaginatedList<WebLapTop.Models.Sanpham>
 @using Newtonsoft.Json
 @inject IHttpContextAccessor HttpContextAccessor
 @using Microsoft.AspNetCore.Http
 @{
-    ViewData["Title"] = "Sản Phẩm";
+    ViewData["Title"] = "Search";
 }
-
 <div id="breadcrumb" class="section">
     <!-- container -->
     <div class="container">
@@ -72,7 +71,7 @@
                 <!-- /aside Widget -->
                 <!-- aside Widget -->
                 <div class="aside">
-                    <h3 class="aside-title">Lọc theo giá bán phụ kiện</h3>
+                    <h3 class="aside-title">Lọc theo giá bán</h3>
                     <div class="price-filter">
                         <div id="price-slider"></div>
                         <a asp-controller="Gia100_200" asp-action="Index" style="font-weight:bold">Khoảng 100 - 200 trăm</a>
@@ -92,6 +91,26 @@
                     <div class="price-filter">
                         <div id="price-slider"></div>
                         <a asp-controller="Tren800" asp-action="Index" style="font-weight:bold">Trên 800 trăm</a>
+                    </div>
+                    <div class="price-filter">
+                        <div id="price-slider"></div>
+                        <a asp-controller="Gia7_11" asp-action="Index" style="font-weight:bold">Khoảng 7 - 11 triệu</a>
+                    </div>
+                    <div class="price-filter">
+                        <div id="price-slider"></div>
+                        <a asp-controller="Gia11_15" asp-action="Index" style="font-weight:bold">Khoảng 11 - 15 triệu</a>
+                    </div>
+                    <div class="price-filter">
+                        <div id="price-slider"></div>
+                        <a asp-controller="Gia15_20" asp-action="Index" style="font-weight:bold">Khoảng 16 - 20 triệu</a>
+                    </div>
+                    <div class="price-filter">
+                        <div id="price-slider"></div>
+                        <a asp-controller="Gia20_25" asp-action="Index" style="font-weight:bold">Khoảng 20 - 25 triệu</a>
+                    </div>
+                    <div class="price-filter">
+                        <div id="price-slider"></div>
+                        <a asp-controller="Tren25" asp-action="Index" style="font-weight:bold">Trên 25 triệu</a>
                     </div>
                 </div>
                 <!-- /aside Widget -->
@@ -122,6 +141,7 @@
                     </div>
                 </div>
                 <!-- /aside Widget -->
+                
                 <!-- aside Widget -->
                 <div class="aside">
                     <h3 class="aside-title">Sản phẩm được quan tâm</h3>
@@ -162,11 +182,25 @@
                 <!-- store top filter -->
                 <div class="store-filter clearfix">
                     <div class="store-sort">
+                        <ul class="nav justify-content-center navsp " style="height: 145px;">
 
+                            <li class="nav-item " style="margin-bottom: auto; margin-top: auto;">
+                                <span>
+                                    Kết quả tìm kiếm
+
+                                </span>
+                                <span style=" display: flex; font-size: 20px;  justify-content: center;color:black">
+                                    Đã tìm thấy
+                                    @ViewBag.thongbao kết quả
+                                </span>
+                            </li>
+
+                        </ul>
                     </div>
 
                 </div>
                 <!-- /store top filter -->
+                
                 <!-- store products -->
                 <div class="row">
                     @{ var jsoncartlove = Context.Request.Cookies[$"{Context.Session.GetInt32("_Id")}_cartlove"];
@@ -176,7 +210,6 @@
                             productlove = JsonConvert.DeserializeObject<List<CartLove>>(jsoncartlove);
                         } }
                     <!-- product -->
-
                     @foreach (var item in Model)
                     {
                         @if (item.GiaKhuyenMai > 0)
@@ -207,8 +240,7 @@
                                             {
                                                 <a asp-controller="Home" asp-action="RemoveItemLove" asp-route-id="@item.Id" class="heart d-flex justify-content-center align-items-center " style="background-color:#ed71a3;">
                                                     <span><i class="fa fa-heart-o"></i></span>
-                                                </a>
-                                            }
+                                                </a> }
                                             else
                                             {
                                                 <a asp-controller="Home" asp-action="AddToCart1" asp-route-id="@item.Id" class="heart d-flex justify-content-center align-items-center ">
@@ -236,7 +268,7 @@
                                         <p class="product-category">Số lượng: @item.SoLuong</p>
                                         <h3 style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                                             @item.TenSanPham
-                                        </h3>                                      <h5 class="product-old-price">Giá: @String.Format("{0:N0}", item.GiaBan) VNĐ</h5>
+                                        </h3>                                        <h5 class="product-old-price">Giá: @String.Format("{0:N0}", item.GiaBan) VNĐ</h5>
                                         @*                            <h5 class="product-old-price" style="color:red">Giá KM: @String.Format("{0:N0}", item.GiaKhuyenMai) VNĐ</h5>
                                         *@                            <div class="product-rating">
                                             <i class="fa fa-star"></i>
@@ -252,15 +284,13 @@
                                             {
                                                 <a asp-controller="Home" asp-action="RemoveItemLove" asp-route-id="@item.Id" class="heart d-flex justify-content-center align-items-center " style="background-color:#ed71a3;">
                                                     <span><i class="fa fa-heart-o"></i></span>
-                                                </a>
-                                            }
+                                                </a> }
                                             else
                                             {
                                                 <a asp-controller="Home" asp-action="AddToCart1" asp-route-id="@item.Id" class="heart d-flex justify-content-center align-items-center ">
                                                     <span><i class="fa fa-heart-o"></i></span>
                                                 </a>
-                                            }                                            
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                            }                                                  <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
                                             <a class="quick-view" asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye"></i><span class="tooltipp"></span></a>
                                         </div>
                                     </div>
@@ -274,70 +304,6 @@
                 </div>
                 <!-- /store products -->
                 <!-- store bottom filter -->
-                <div class="store-filter clearfix">
-                    <ul class="store-pagination">
-                        @{
-                            int numberPage = ViewBag.numberPage;
-                            int pageCurrent = ViewBag.pageCurrent;
-                            int offset = 2;//number display page
-
-
-                            //config FirstLink
-                            if (pageCurrent > 1)
-                            {
-                                int prevPage = pageCurrent - 1;
-                                var PrevLink = new Dictionary<string, string> { { "page", prevPage.ToString() } };
-                                <li class="page-item"><a class="page-link" asp-controller="Gia300_500" asp-action="Index" asp-all-route-data="PrevLink">Trước</a></li>
-                            }
-
-                            int from = pageCurrent - offset;
-                            int to = pageCurrent + offset;
-                            if (from <= 0)
-                            {
-                                from = 1;
-                                to = offset * 2;
-                            }
-
-
-                            if (to > numberPage)
-                            {
-                                to = numberPage;
-                            }
-
-                            int i;
-                            for (i = from; i <= to; i++)
-                            {
-                                var parms = new Dictionary<string, string>
-                                                                                                                                                                                                                                                        {
-                        { "page",i.ToString()}
-                    };
-                                if (pageCurrent == i)
-                                {
-                                    <li class="page-item active "><a class="page-link" asp-controller="Gia300_500" asp-action="Index" asp-all-route-data="parms">@i</a></li>
-                                }
-                                else
-                                {
-                                    <li class="page-item  "><a class="page-link" asp-controller="Gia300_500" asp-action="Index" asp-all-route-data="parms">@i</a></li>
-                                }
-
-                            }
-
-                            if (pageCurrent < numberPage - (to / 2))
-                            {
-                                <li><a>...</a></li>
-                                var LastLink = new Dictionary<string, string> { { "page", numberPage.ToString() } };
-                                <li class="page-item"><a class="page-link" asp-controller="Gia300_500" asp-action="Index" asp-all-route-data="LastLink">Cuối</a></li>
-                            }
-
-                            if (pageCurrent < numberPage)
-                            {
-                                int nextPage = pageCurrent + 1;
-                                var NextLink = new Dictionary<string, string> { { "page", nextPage.ToString() } };
-                                <li class="page-item"><a class="page-link" asp-controller="Gia300_500" asp-action="Index" asp-all-route-data="NextLink"><i class="fa fa-angle-right"></i></a></li>
-                            }
-                        }
-                    </ul>
-                </div>
                 <!-- /store bottom filter -->
             </div>
             <!-- /STORE -->
@@ -347,3 +313,18 @@
     <!-- /container -->
 </div>
 <!-- /SECTION -->
+
+
+<style>
+    .css-18 {
+        height: 36px;
+        width: 80px;
+        background: #3150a2;
+        color: #fff;
+    }
+
+    .btn :hover {
+        background-color: #a4aec9;
+        color: #fff;
+    }
+</style>

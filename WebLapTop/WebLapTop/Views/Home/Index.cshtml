@@ -338,7 +338,7 @@
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name"><a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Id">@item.TenSanPham</a></h3>
-                                        <h4 class="product-price">Giá: @String.Format("{0:N0}", item.GiaKhuyenMai) VN <del class="product-old-price"> @String.Format("{0:N0}", item.GiaBan) VN</del></h4>
+                                        <h4 class="product-price">Giá: @String.Format("{0:N0}", item.GiaKhuyenMai) VNĐ <del class="product-old-price"> @String.Format("{0:N0}", item.GiaBan) VNĐ</del></h4>
                                     </div>
                                 </div>
                             }
@@ -350,7 +350,7 @@
                                     </div>
                                     <div class="product-body">
                                         <h3 class="product-name"><a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Id">@item.TenSanPham</a></h3>
-                                        <h4 class="product-price">Giá: @String.Format("{0:N0}", item.GiaBan) VN</h4>
+                                        <h4 class="product-price">Giá: @String.Format("{0:N0}", item.GiaBan) VNĐ</h4>
                                     </div>
                                 </div>
                             }
